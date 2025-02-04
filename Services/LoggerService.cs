@@ -3,23 +3,29 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 
-namespace Logger
+namespace Logger.Services
 {
-    public class Logger
+    public class LoggerService
     {
-        private readonly string LogPath;
-        public Logger(string logPath)
+
+        private readonly Logger _logger;
+
+        public LoggerService(string logPath)
         {
-            LogPath = logPath;
+            _logger = new Models.Logger(logPath);
         }
-        public void Log(object data)
+
+        public void AddLog(object data)
         {
-            if (!Directory.Exists(LogPath))
+            if (!Directory.Exists(_logger.LogPath))
             {
-                Directory.CreateDirectory(LogPath);
+                Directory.CreateDirectory(_logger.LogPath);
             }
-            string logFilePath = Path.Combine(LogPath, DateTime.Now.ToString("d-MM-yyyy") + ".json");
+
+            string logFilePath = Path.Combine(_logger.LogPath, DateTime.Now.ToString("d-MM-yyyy") + ".json");
+
             List<object> logEntries = new List<object>();
+
             if (File.Exists(logFilePath))
             {
                 string existingContent = File.ReadAllText(logFilePath);
@@ -35,11 +41,14 @@ namespace Logger
                     }
                 }
             }
+
             logEntries.Add(data);
+
             string json = JsonSerializer.Serialize(logEntries, new JsonSerializerOptions
             {
                 WriteIndented = true
             });
+
             File.WriteAllText(logFilePath, json);
         }
     }
