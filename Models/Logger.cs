@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace Logger.Models
+namespace LoggerDLL.Models
 {
     public class Logger
     {

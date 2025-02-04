@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
-
-namespace Logger.Services
+using LoggerDLL.Models;
+namespace LoggerDLL.Services
 {
     public class LoggerService
     {
