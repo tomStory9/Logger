@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace LoggerDLL.Models
 {
-    class LogType
+    public class LogType
     {
-        enum LogTypeEnum
+        public enum LogTypeEnum
         {
             JSON,
             XML
         }
-
     }
 }
