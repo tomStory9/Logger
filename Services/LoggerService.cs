@@ -11,7 +11,7 @@ namespace LoggerDLL.Services
     {
         private readonly Logger _logger;
 
-        public LoggerService(string logPath, LogTypeEnum logType)
+        public LoggerService(string logPath, LogType.LogTypeEnum logType)
         {
             _logger = new Logger(logPath, logType);
         }
@@ -27,11 +27,11 @@ namespace LoggerDLL.Services
 
             switch (_logger.LogType)
             {
-                case LogTypeEnum.Xml:
+                case LogType.LogTypeEnum.XML:
                     logFilePath += ".xml";
                     SerializeToXml(logFilePath, data);
                     break;
-                case LogTypeEnum.Json:
+                case LogType.LogTypeEnum.JSON:
                     logFilePath += ".json";
                     SerializeToJson(logFilePath, data);
                     break;
